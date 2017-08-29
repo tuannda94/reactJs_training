@@ -1,0 +1,24 @@
+body {
+    overflow: hidden;
+}
+
+#content {
+    height: 20vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+        font-size: 5em;
+    }
+}
+
+.add {
+    display: inline-block;
+}
+
+.list {
+    .component {
+        display: inline-block;
+	}
+}
