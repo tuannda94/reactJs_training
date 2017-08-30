@@ -26,5 +26,13 @@ module.exports = {
             }
         ]
     },
-    plugins: [HtmlWebpackPluginConfig]
+    plugins: [HtmlWebpackPluginConfig],
+    resolve: {
+        alias: {
+            components: path.join(__dirname, 'src/components/')
+        },
+        modules: [
+            path.resolve(__dirname, 'node_modules')
+        ]
+    }
 }
