@@ -1,24 +1,12 @@
-body {
-    overflow: hidden;
-}
-
-#content {
-    height: 20vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    span {
-        font-size: 5em;
+.todos {
+    width: 75%;
+    max-width: 600px;
+    margin: 0 auto;
+    &--header {
+        display: flex;
+        justify-content: center;
+        font-size: 2em;
+        text-decoration: uppercase;
+        margin-bottom: 24px;
     }
-}
-
-.add {
-    display: inline-block;
-}
-
-.list {
-    .component {
-        display: inline-block;
-	}
 }
