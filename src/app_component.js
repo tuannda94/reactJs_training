@@ -1,6 +1,7 @@
 import React from 'react';
-import Item from './item';
-import './app.scss';
+import List from './list';
+import Create from './create';
+import './app_component.scss';
 
 export default class AppComponent extends React.Component {
 	constructor(props) {
@@ -14,21 +15,21 @@ export default class AppComponent extends React.Component {
             	{id:5, name: 'todo_5', completed: true}
             ]
         };
+        this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
+
+    }
+
+    handleRemoveTodo(id) {
+        const todos = this.state.todos;
+        let filter = todos.filter(t => t.id !== id);
+        this.setState({todos: filter});
     }
 
     render() {
         return (
             <div className="todos">
-                <ul className="todo__list">
-	                {todos.map(todo =>
-	        			<Item key={todo.id} value={todo.name} />
-	    			)}
-                </ul>
-                <div className="create-todo">
-                    <div className="new-button"><span>+</span>
-                        New thing to do
-                    </div>
-                </div>
+                <List todos={this.state.todos} todoRemove={this.handleTodoRemove} />
+                <Create />
             </div>
         );
     }
