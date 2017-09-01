@@ -3,6 +3,8 @@ import List from './list/list';
 import Create from './create/create';
 import Filter from './filter/filter';
 import _map from 'lodash/map';
+import ReactDOM from 'react-dom';
+
 
 import './app_component.scss';
 
@@ -80,3 +82,4 @@ export default class AppComponent extends React.Component {
     }
 
 }
+ReactDOM.render(<AppComponent />, document.getElementById('home_route'));

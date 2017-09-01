@@ -1,8 +1,8 @@
 import React from 'react';
 import './app.scss';
+import ReactDOM from 'react-dom';
 
-
-export default class Todo extends React.Component {
+export default class App extends React.Component {
     render () {
         return (
             <div className="todos">
@@ -44,3 +44,4 @@ export default class Todo extends React.Component {
         )
     }
 }
+ReactDOM.render(<App />, document.getElementById('home_route'));
