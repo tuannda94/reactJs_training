@@ -1,5 +1,4 @@
 import React from 'react';
-import './input.scss';
 
 class Input extends React.Component {
     constructor(props) {
@@ -29,7 +28,6 @@ class Input extends React.Component {
 
     render() {
         return (
-            <div className='input-field-container'>
                 <input
                     type={this.props.type || 'text'}
                     value={this.state.value || ''}
@@ -39,8 +37,9 @@ class Input extends React.Component {
                     ref={this.props.inputRef}
                     disabled={this.props.disabled ? true : false}
                     maxLength={this.props.maxLength || -1}
+                    className="form-control"
+                    autoFocus
                 />
-            </div>
         );
     }
 }
