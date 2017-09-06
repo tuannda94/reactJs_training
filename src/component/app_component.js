@@ -12,7 +12,7 @@ export default class AppComponent extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-            todos: [], 
+            todos: [],
             filter:'SHOW_ALL'
         };
 
