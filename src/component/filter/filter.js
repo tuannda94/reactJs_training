@@ -1,11 +1,11 @@
 import React from 'react';
 import './filter.scss';
 
-const Filter = ({clickFilter}) => (
+const Filter = ({clickFilter, filter}) => (
     <div className="todo__filter">
-        <button  className="todo__filter-item" onClick={() => clickFilter('SHOW_ALL')}>ALL</button>
-        <button  className="todo__filter-item" onClick={() => clickFilter('SHOW_COMPLETED')}>COMPLETED</button>
-        <button  className="todo__filter-item" onClick={() => clickFilter('SHOW_ACTIVE')}>ACTIVE</button>
+        <button className={filter === "SHOW_ALL" ? "btn btn-warning" : "btn btn-default"} onClick={() => clickFilter('SHOW_ALL')}>ALL</button>
+        <button className={filter === "SHOW_COMPLETED" ? "btn btn-warning" : "btn btn-default"} onClick={() => clickFilter('SHOW_COMPLETED')}>COMPLETED</button>
+        <button className={filter === "SHOW_ACTIVE" ? "btn btn-warning" : "btn btn-default"} onClick={() => clickFilter('SHOW_ACTIVE')}>ACTIVE</button>
     </div>
 )
 

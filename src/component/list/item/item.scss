@@ -4,9 +4,13 @@
     align-items: center;
     // margin-bottom: 12px;
     border-bottom: 1px dashed #CCC;
-    padding: 12px 8px;
     label {
         display: inline-flex;
+        overflow: hidden!important;
+        text-overflow: ellipsis!important;
+        display: block!important;
+        white-space: nowrap!important;
+        width: 25em!important;
     }
 
     .button-remove {

@@ -35,25 +35,26 @@ export default class Create extends React.Component {
     render () {
         if(this.state.taskCreating) {
             return (
-                <div className='input-field-container'>
-                    <Input
-                        name="todo"
-                        placeholder="here"
-                        ref={(c) => {this.todo = c;}}
-                    />
-                    <div className="button-group">
-                        <button onClick={this.inputSave}>+</button>
-                        <button onClick={this.inputCancel}>X</button>
+                <form>
+                    <div className="form-group">
+                        <Input
+                            name="todo"
+                            placeholder="here"
+                            ref={(c) => {this.todo = c;}}
+
+                        />
                     </div>
-                </div>
+                    <button onClick={this.inputSave} className="btn btn-success btn-sm">Save</button>
+                    <button onClick={this.inputCancel} className="btn btn-warning btn-sm">Cancel</button>
+                </form>
             )
         }
 
         return (
             <div className="create-todo">
                 <div className="new-button">
-                    <span onClick={() => {this.setState({taskCreating: true})}}>+</span>
-                    Add new task!
+                    <button onClick={() => {this.setState({taskCreating: true})}} className="btn btn-primary">Add new task!</button>
+                    
                 </div>
             </div>
         )

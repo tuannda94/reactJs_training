@@ -3,20 +3,16 @@ import List from './list/list';
 import Create from './create/create';
 import Filter from './filter/filter';
 import _map from 'lodash/map';
-
+import ReactDOM from 'react-dom';
+import {getTodos, createTodo, updateTodo, deleteTodo} from '../api/axios';
+import _findIndex from 'lodash/findIndex';
 import './app_component.scss';
 
 export default class AppComponent extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-            todos: [
-            	{id:1, name: 'todo_1', completed: true},
-            	{id:2, name: 'todo_2', completed: false},
-            	{id:3, name: 'todo_3', completed: false},
-            	{id:4, name: 'todo_4', completed: true},
-            	{id:5, name: 'todo_5', completed: true}
-            ],
+            todos: [], 
             filter:'SHOW_ALL'
         };
 
@@ -27,11 +23,20 @@ export default class AppComponent extends React.Component {
         this.handleAddTodo = this.handleAddTodo.bind(this);
 
     }
+
+    componentWillMount() {
+        getTodos((respones) => {
+            this.setState({ todos: respones.data }) });
+    }
+
     // su kien click button - item
     handleTodoRemove(id) {
         const todos = this.state.todos;
-        let filter = todos.filter(t => t.id !== id);
-        this.setState({todos: filter});
+        deleteTodo(id, (respones) => {
+            let filter = todos.filter(t => t.id !== id);
+            this.setState({todos: filter});
+        });
+        
     }
     // su kien click filter, sau do chay den filterTodo()
     handleTodoFilter(filter) {
@@ -52,27 +57,29 @@ export default class AppComponent extends React.Component {
     }
 
     handleCheckbox(id) {
-        console.log(id)
+        const todos = this.state.todos;
+        let index = _findIndex(todos, {id});
+        if (index !== -1) {
+            let todo = todos[index];
+            todo.completed = !todo.completed;
+            todos[index] = todo;
+            this.setState({todos});
+        }
     }
 
     handleAddTodo(text) {
         const todos = this.state.todos;
-        let ids = _map(todos, 'id');
-        let max = Math.max(...ids);
-        todos.push({
-            id: max+1,
-            name: text,
-            completed: false
+        createTodo({name: text, completed: false}, (respones) => {
+            todos.push(respones.data);
+            this.setState({todos});
         });
-
-        this.setState({todos});
     }
 
     render() {
         return (
             <div className="todos">
                 <List todos={this.filterTodo()} todoRemove={this.handleTodoRemove} clickCheckbox={this.handleCheckbox}/>
-                <Filter clickFilter={this.handleTodoFilter} />
+                <Filter clickFilter={this.handleTodoFilter} filter={this.state.filter} />
                 <Create inputSave={this.handleAddTodo} />
 
             </div>
